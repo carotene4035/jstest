@@ -3,24 +3,51 @@ var chai = require('chai');
 var assert = chai.assert;
 
 describe('テストの名前', function() {
-  it('250以上はA', function() {
+
+  // Aかつ合格
+  it('Aかつ合格', function() {
     assert.strictEqual(
-      f.get_achievement(100, 100, 100), "A"
+      f.judgement(100, 100, 100), "あなたの成績はAです。合格です!"
     )
   });
-  it('200以上250未満はB', function() {
+
+  // Aかつ不合格
+  it('Aかつ不合格', function() {
     assert.strictEqual(
-      f.get_achievement(100, 50, 80), "B"
+      f.judgement(100, 100, 55), "あなたの成績はAです。不合格です!"
     )
   });
-  it('100以上200未満はC', function() {
+
+  // Bかつ合格
+  it('Bかつ合格', function() {
     assert.strictEqual(
-      f.get_achievement(10, 90, 10), "C"
+      f.judgement(70, 70, 70), "あなたの成績はBです。合格です!"
     )
   });
-  it('100未満はD', function() {
+  // Bかつ不合格
+  it('Bかつ不合格', function() {
     assert.strictEqual(
-      f.get_achievement(10, 10, 10), "D"
+      f.judgement(100, 100, 45), "あなたの成績はBです。不合格です!"
+    )
+  });
+
+  // Cかつ合格
+  it('Cかつ合格', function() {
+    assert.strictEqual(
+      f.judgement(65, 65, 65), "あなたの成績はCです。合格です!"
+    )
+  });
+  // Cかつ不合格
+  it('Cかつ不合格', function() {
+    assert.strictEqual(
+      f.judgement(100, 80, 15), "あなたの成績はCです。不合格です!"
+    )
+  });
+
+  // Dかつ不合格
+  it('Dかつ不合格', function() {
+    assert.strictEqual(
+      f.judgement(30, 30, 30), "あなたの成績はDです。不合格です!"
     )
   });
 });
